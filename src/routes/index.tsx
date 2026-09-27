@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Brain, HandHeart, Heart, Lightbulb, MessageCircleQuestion, Puzzle, School, Sparkles, Users } from "lucide-react";
+import { useState } from "react";
 import hero from "@/assets/beyond-hero.jpg";
 import puzzle from "@/assets/learning-puzzle.jpg";
 import reading from "@/assets/learning-reading.jpg";
 import workshop from "@/assets/learning-workshop.jpg";
 import { Button } from "@/components/ui/button";
 import { CtaBand, InfoCard, SectionHeading } from "@/components/page-sections";
+import { ImageLightbox, useLightbox } from "@/components/image-lightbox";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
