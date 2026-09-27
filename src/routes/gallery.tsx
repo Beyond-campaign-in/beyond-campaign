@@ -99,7 +99,7 @@ function Page() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={imgs[active].label}
+          aria-label={imgs[active]!.label}
           className="nav-fade fixed inset-0 z-[60] flex items-center justify-center bg-foreground/80 p-4 backdrop-blur-sm"
           onClick={close}
         >
@@ -127,12 +127,12 @@ function Page() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={imgs[active].src}
-              alt={imgs[active].label}
+              src={imgs[active]!.src}
+              alt={imgs[active]!.label}
               className="max-h-[75vh] w-full object-contain shadow-2xl"
             />
             <figcaption className="flex items-center justify-between bg-primary px-5 py-3 text-sm text-primary-foreground">
-              <span>{imgs[active].label}</span>
+              <span>{imgs[active]!.label}</span>
               <span className="text-primary-foreground/70">
                 {active + 1} / {imgs.length}
               </span>
