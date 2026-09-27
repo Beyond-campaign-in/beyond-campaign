@@ -32,36 +32,26 @@ export function SiteHeader() {
   }, [open]);
 
   return <>
-    <div className="hidden border-b border-primary-foreground/10 bg-primary px-5 py-2 text-primary-foreground md:block">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 text-xs">
-        <p className="font-semibold text-gold">We inspire learning in kids</p>
-        <div className="flex items-center gap-6">
-          <a className="flex items-center gap-2 transition-colors hover:text-gold" href="tel:+917708045679"><Phone className="size-3.5" />+91 77080 45679</a>
-          <a className="flex items-center gap-2 transition-colors hover:text-gold" href="mailto:beyondcampaign.in@gmail.com"><Mail className="size-3.5" />beyondcampaign.in@gmail.com</a>
-        </div>
-      </div>
-    </div>
-
-    <header className={`sticky top-0 z-50 border-b bg-background/95 backdrop-blur-xl transition-all duration-300 ${scrolled ? "border-border shadow-[0_10px_30px_-18px_oklch(0.31_0.13_20/0.55)]" : "border-gold/30"}`}>
-      <div className={`mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 transition-all duration-300 ${scrolled ? "h-16 lg:h-[4.75rem]" : "h-[4.5rem] lg:h-[5.5rem]"}`}>
+    <header className={`sticky top-0 z-50 border-b-2 border-gold bg-background/95 backdrop-blur-xl transition-all duration-300 ${scrolled ? "shadow-[0_12px_35px_-20px_oklch(0.31_0.13_20/0.65)]" : ""}`}>
+      <div className={`mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 transition-all duration-300 ${scrolled ? "h-[4.5rem] lg:h-20" : "h-20 lg:h-24"}`}>
         <Link to="/" className="flex min-w-0 shrink-0 items-center" aria-label="Beyond Campaign home">
-          <img src={logo} alt="Beyond Campaign" className={`w-auto shrink-0 object-contain object-left transition-all duration-300 ${scrolled ? "h-14 lg:h-16" : "h-16 lg:h-20"}`} />
+          <img src={logo} alt="Beyond Campaign" className={`w-auto shrink-0 object-contain object-left transition-all duration-300 ${scrolled ? "h-16 lg:h-[4.5rem]" : "h-[4.5rem] lg:h-[5.5rem]"}`} />
           <span className="sr-only">Beyond Campaign</span>
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="Main navigation">
           {links.map(([label, to]) => (
             <Link
               key={to}
               to={to}
               activeOptions={{ exact: to === "/" }}
-              className="nav-link whitespace-nowrap text-[13px] font-semibold text-foreground/70 hover:text-primary"
+              className="nav-link whitespace-nowrap text-[13px] font-bold text-foreground/70 hover:text-primary"
             >{label}</Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden bg-primary text-primary-foreground shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-burgundy-soft md:inline-flex">
+          <Button asChild size="sm" className="hidden border border-gold/40 bg-primary text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:bg-burgundy-soft hover:shadow-lg md:inline-flex">
             <Link to="/get-involved">Get Involved <ArrowRight className="size-4" /></Link>
           </Button>
           <Button variant="ghost" size="icon" className="xl:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
