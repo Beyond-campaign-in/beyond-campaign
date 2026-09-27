@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Brain, Puzzle, School, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, Heart, Puzzle, School, Sparkles, Users } from "lucide-react";
 import hero from "@/assets/beyond-hero.jpg";
 import reading from "@/assets/learning-reading.jpg";
 import { Button } from "@/components/ui/button";
