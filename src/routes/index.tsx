@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Brain, Heart, Puzzle, School, Sparkles, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, HandHeart, Heart, Lightbulb, MessageCircleQuestion, Puzzle, School, Sparkles, Users } from "lucide-react";
 import hero from "@/assets/beyond-hero.jpg";
+import puzzle from "@/assets/learning-puzzle.jpg";
 import reading from "@/assets/learning-reading.jpg";
+import workshop from "@/assets/learning-workshop.jpg";
 import { Button } from "@/components/ui/button";
 import { CtaBand, InfoCard, SectionHeading } from "@/components/page-sections";
 
@@ -31,7 +33,34 @@ function HomePage() { return <>
     <div><SectionHeading eyebrow="Our purpose" title="Learning is more than just studying." text="We believe every child has the ability to learn, think, question, understand, and discover. At Beyond Campaign, we create awareness among children about why they learn, what they gain from learning, and how learning can help them in life." /><p className="mt-6 leading-8 text-muted-foreground">We want children to move beyond simply studying for marks and begin to understand the value of learning.</p><blockquote className="mt-8 border-l-2 border-gold pl-6 font-display text-2xl font-semibold text-primary">Education planted in children today becomes a contribution to humanity tomorrow.</blockquote></div>
     <img src={reading} loading="lazy" width={1008} height={768} alt="A child exploring a book in a library" className="aspect-[4/3] w-full object-cover shadow-xl" />
   </div></section>
+  <section className="px-5 py-20 md:py-28"><div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+    <div className="grid grid-cols-2 gap-4">
+      <img src={puzzle} loading="lazy" width={1008} height={768} alt="Children learning through a hands-on puzzle activity" className="aspect-[4/3] w-full object-cover shadow-lg" />
+      <img src={workshop} loading="lazy" width={1008} height={768} alt="Children asking questions in a group workshop" className="mt-8 aspect-[4/3] w-full object-cover shadow-lg" />
+    </div>
+    <div><SectionHeading eyebrow="Why it matters" title="When children know why, they learn for life." />
+      <div className="mt-8 space-y-6">
+        {([[Lightbulb,"Curiosity first","Questions open the door — every session begins with wonder, not answers."],[MessageCircleQuestion,"Confidence to think","Children learn to reason, express, and form their own view with courage."],[HandHeart,"Learning that serves","Knowledge grows into kindness — for family, community, and humanity."]] as const).map(([Icon,t,d]) => (
+          <div key={t} className="flex gap-4 border-b border-border pb-6 last:border-0 last:pb-0">
+            <div className="flex size-11 shrink-0 items-center justify-center bg-primary text-gold"><Icon /></div>
+            <div><h3 className="font-bold text-primary">{t}</h3><p className="mt-1 text-sm leading-7 text-muted-foreground">{d}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div></section>
   <section className="bg-ivory px-5 py-20 md:py-24"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="What we do" title="Experiences that make children think." center /><div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{([[School,"Educational awareness programs"],[Sparkles,"Learning activities"],[BookOpen,"School awareness campaigns"],[Users,"Interactive sessions"],[Puzzle,"Games & puzzles for learning"],[Brain,"Workshops for children"],[Heart,"Parent & educator awareness"]] as const).map(([Icon,t]) => <InfoCard key={t} icon={<Icon />} title={t} />)}</div></div></section>
   <section className="px-5 py-20 md:py-28"><div className="mx-auto max-w-7xl"><div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><SectionHeading eyebrow="A simple journey" title="Ask. Understand. Think. Learn." text="Learning becomes meaningful when a child moves beyond memorising and begins to own the journey." /><div className="grid gap-4 sm:grid-cols-2">{[["01","Ask","Curiosity begins with a question."],["02","Understand","Ideas become clear and connected."],["03","Think","Children reason and form their own view."],["04","Learn","Knowledge becomes a lifelong companion."]].map(([n,t,d]) => <div key={n} className="border border-border p-6"><div className="flex items-center justify-between"><Sparkles className="text-gold-rich"/><span className="text-xs font-bold text-muted-foreground">{n}</span></div><h3 className="mt-8 text-3xl font-bold text-primary">{t}</h3><p className="mt-2 text-sm text-muted-foreground">{d}</p></div>)}</div></div></div></section>
+  <section className="px-5 py-20 md:py-24"><div className="mx-auto max-w-7xl">
+    <div className="flex flex-wrap items-end justify-between gap-6"><SectionHeading eyebrow="Learning moments" title="Joy, curiosity, and discovery in action." /><Button asChild variant="outline" className="border-gold/50 text-primary hover:bg-gold/10"><Link to="/gallery">View Full Gallery <ArrowRight /></Link></Button></div>
+    <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      {([[hero,"Hands-on discovery"],[puzzle,"Learning through play"],[workshop,"Questions and conversations"],[reading,"Independent exploration"]] as const).map(([src,label],i) => (
+        <figure key={label} className={i % 2 === 1 ? "lg:mt-8" : ""}>
+          <img src={src} loading="lazy" width={1008} height={768} alt={label} className="aspect-[4/3] w-full object-cover shadow-md transition-transform duration-500 hover:scale-[1.03]" />
+          <figcaption className="bg-primary px-4 py-2.5 text-sm text-primary-foreground">{label}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div></section>
   <CtaBand />
  </>; }
