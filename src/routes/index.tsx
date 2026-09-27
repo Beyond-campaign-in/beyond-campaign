@@ -65,13 +65,24 @@ function HomePage() {
   <section className="px-5 py-20 md:py-24"><div className="mx-auto max-w-7xl">
     <div className="flex flex-wrap items-end justify-between gap-6"><SectionHeading eyebrow="Learning moments" title="Joy, curiosity, and discovery in action." /><Button asChild variant="outline" className="border-gold/50 text-primary hover:bg-gold/10"><Link to="/gallery">View Full Gallery <ArrowRight /></Link></Button></div>
     <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
-      {([[hero,"Hands-on discovery"],[puzzle,"Learning through play"],[workshop,"Questions and conversations"],[reading,"Independent exploration"]] as const).map(([src,label],i) => (
-        <figure key={label} className={i % 2 === 1 ? "lg:mt-8" : ""}>
-          <img src={src} loading="lazy" width={1008} height={768} alt={label} className="aspect-[4/3] w-full object-cover shadow-md transition-transform duration-500 hover:scale-[1.03]" />
-          <figcaption className="bg-primary px-4 py-2.5 text-sm text-primary-foreground">{label}</figcaption>
+      {moments.map((m, i) => (
+        <figure key={m.label} className={i % 2 === 1 ? "lg:mt-8" : ""}>
+          <button
+            type="button"
+            onClick={() => open(i)}
+            aria-label={`View ${m.label}`}
+            className="group block w-full cursor-pointer overflow-hidden text-left"
+          >
+            <img src={m.src} loading="lazy" width={1008} height={768} alt={m.label} className="aspect-[4/3] w-full object-cover shadow-md transition-transform duration-500 group-hover:scale-[1.03]" />
+          </button>
+          <figcaption className="bg-primary px-4 py-2.5 text-sm text-primary-foreground">{m.label}</figcaption>
         </figure>
       ))}
     </div>
   </div></section>
   <CtaBand />
+  {active !== null && (
+    <ImageLightbox images={moments} active={active} onClose={close} onStep={step} />
+  )}
  </>; }
+}
