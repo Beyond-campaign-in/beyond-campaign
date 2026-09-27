@@ -11,8 +11,8 @@ export function SectionHeading({ eyebrow, title, text, center=false }: { eyebrow
   return <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>{eyebrow && <p className="mb-3 text-xs font-bold uppercase tracking-[.2em] text-gold-rich">{eyebrow}</p>}<h2 className="text-4xl font-bold leading-tight text-primary md:text-5xl">{title}</h2>{text && <p className="mt-5 leading-8 text-muted-foreground">{text}</p>}</div>;
 }
 
-export function InfoCard({ icon, title, children }: { icon?: ReactNode; title: string; children: ReactNode }) {
-  return <article className="border-t-2 border-gold bg-card p-7 shadow-sm transition-transform duration-300 hover:-translate-y-1"><div className="mb-5 text-gold-rich">{icon}</div><h3 className="text-2xl font-bold text-primary">{title}</h3><div className="mt-3 text-sm leading-7 text-muted-foreground">{children}</div></article>;
+export function InfoCard({ icon, title, children }: { icon?: ReactNode; title: string; children?: ReactNode }) {
+  return <article className="border-t-2 border-gold bg-card p-7 shadow-sm transition-transform duration-300 hover:-translate-y-1"><div className="mb-5 text-gold-rich">{icon}</div><h3 className="text-2xl font-bold text-primary">{title}</h3>{children && <div className="mt-3 text-sm leading-7 text-muted-foreground">{children}</div>}</article>;
 }
 
 export function CtaBand({ title="Let's inspire a love for learning.", text="Bring meaningful learning-awareness experiences to your school or community." }: { title?: string; text?: string }) {
