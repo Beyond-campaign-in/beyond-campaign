@@ -122,6 +122,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SiteHeader />
       <main><Outlet /></main>
+      <PageFlowNav />
       <SiteFooter />
     </QueryClientProvider>
   );
