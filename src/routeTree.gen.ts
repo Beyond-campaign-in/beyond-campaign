@@ -18,6 +18,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as WhyLearningRouteImport } from './routes/why-learning'
+import { Route as ApiContactRouteImport } from './routes/api.contact'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const WhyLearningRoute = WhyLearningRouteImport.update({
   path: '/why-learning',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
   '/why-learning': typeof WhyLearningRoute
+  '/api/contact': typeof ApiContactRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
   '/why-learning': typeof WhyLearningRoute
+  '/api/contact': typeof ApiContactRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
   '/why-learning': typeof WhyLearningRoute
+  '/api/contact': typeof ApiContactRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/get-involved'
     | '/programs'
     | '/why-learning'
+    | '/api/contact'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/get-involved'
     | '/programs'
     | '/why-learning'
+    | '/api/contact'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/get-involved'
     | '/programs'
     | '/why-learning'
+    | '/api/contact'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   GetInvolvedRoute: typeof GetInvolvedRoute
   ProgramsRoute: typeof ProgramsRoute
   WhyLearningRoute: typeof WhyLearningRoute
+  ApiContactRoute: typeof ApiContactRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WhyLearningRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   GetInvolvedRoute: GetInvolvedRoute,
   ProgramsRoute: ProgramsRoute,
   WhyLearningRoute: WhyLearningRoute,
+  ApiContactRoute: ApiContactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
