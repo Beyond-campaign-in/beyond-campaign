@@ -84,5 +84,5 @@ function HomePage() {
   {active !== null && (
     <ImageLightbox images={moments} active={active} onClose={close} onStep={step} />
   )}
- </>; }
+ </>;
 }
