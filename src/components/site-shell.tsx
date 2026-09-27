@@ -68,7 +68,7 @@ export function SiteHeader() {
       </div>
 
       {open && <>
-        <button aria-hidden tabIndex={-1} onClick={() => setOpen(false)} className="nav-fade fixed inset-0 top-0 -z-10 cursor-default bg-foreground/30 backdrop-blur-sm xl:hidden" />
+        <button aria-hidden tabIndex={-1} onClick={() => setOpen(false)} className="nav-fade absolute inset-x-0 top-full h-screen cursor-default bg-foreground/30 backdrop-blur-sm xl:hidden" />
         <nav className="nav-drop border-t border-border bg-background px-5 py-4 shadow-xl xl:hidden" aria-label="Mobile navigation">
           <div className="mx-auto grid max-w-7xl gap-1">
             {links.map(([label, to]) => (
