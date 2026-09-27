@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Brain, HandHeart, Heart, Lightbulb, MessageCircleQuestion, Puzzle, School, Sparkles, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, HandHeart, Lightbulb, MessageCircleQuestion, Puzzle, School, Sparkles, Users } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/beyond-hero.jpg";
 import puzzle from "@/assets/learning-puzzle.jpg";
