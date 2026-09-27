@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as WhyLearningRouteImport } from './routes/why-learning'
 
@@ -25,9 +29,29 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetInvolvedRoute = GetInvolvedRouteImport.update({
+  id: '/get-involved',
+  path: '/get-involved',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgramsRoute = ProgramsRouteImport.update({
@@ -44,14 +68,22 @@ const WhyLearningRoute = WhyLearningRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
   '/why-learning': typeof WhyLearningRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
   '/why-learning': typeof WhyLearningRoute
 }
@@ -59,22 +91,58 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
   '/why-learning': typeof WhyLearningRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/events' | '/programs' | '/why-learning'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/events'
+    | '/faq'
+    | '/gallery'
+    | '/get-involved'
+    | '/programs'
+    | '/why-learning'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/events' | '/programs' | '/why-learning'
-  id: '__root__' | '/' | '/about' | '/events' | '/programs' | '/why-learning'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/events'
+    | '/faq'
+    | '/gallery'
+    | '/get-involved'
+    | '/programs'
+    | '/why-learning'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/events'
+    | '/faq'
+    | '/gallery'
+    | '/get-involved'
+    | '/programs'
+    | '/why-learning'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
+  FaqRoute: typeof FaqRoute
+  GalleryRoute: typeof GalleryRoute
+  GetInvolvedRoute: typeof GetInvolvedRoute
   ProgramsRoute: typeof ProgramsRoute
   WhyLearningRoute: typeof WhyLearningRoute
 }
@@ -95,11 +163,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-involved': {
+      id: '/get-involved'
+      path: '/get-involved'
+      fullPath: '/get-involved'
+      preLoaderRoute: typeof GetInvolvedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programs': {
@@ -122,7 +218,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
+  FaqRoute: FaqRoute,
+  GalleryRoute: GalleryRoute,
+  GetInvolvedRoute: GetInvolvedRoute,
   ProgramsRoute: ProgramsRoute,
   WhyLearningRoute: WhyLearningRoute,
 }
