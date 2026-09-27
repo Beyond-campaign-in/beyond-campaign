@@ -47,7 +47,7 @@ function HomePage() {
   <section className="px-5 py-20 md:py-28"><div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
     <div className="grid grid-cols-2 gap-4">
       <img src={puzzle} loading="lazy" width={1008} height={768} alt="Children learning through a hands-on puzzle activity" className="aspect-[4/3] w-full object-cover shadow-lg" />
-      <img src={workshop} loading="lazy" width={1008} height={768} alt="Children asking questions in a group workshop" className="mt-8 aspect-[4/3] w-full object-cover shadow-lg" />
+      <img src={workshop} loading="lazy" width={1008} height={768} alt="Children asking questions in a group workshop" className="aspect-[4/3] w-full object-cover shadow-lg lg:mt-8" />
     </div>
     <div><SectionHeading eyebrow="Why it matters" title="When children know why, they learn for life." />
       <div className="mt-8 space-y-6">
