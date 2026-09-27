@@ -168,6 +168,54 @@
 @keyframes reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @utility reveal { animation: reveal .65s ease-out both; }
 
+@keyframes nav-drop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@utility nav-drop { animation: nav-drop .28s ease-out both; }
+
+@keyframes nav-fade { from { opacity: 0; } to { opacity: 1; } }
+@utility nav-fade { animation: nav-fade .25s ease-out both; }
+
+/* Animated underline navigation link */
+@layer components {
+  .nav-link {
+    position: relative;
+    padding-block: 0.45rem;
+    transition: color .25s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+    background: linear-gradient(90deg, var(--gold-rich), var(--gold));
+  }
+  .nav-link:hover::after,
+  .nav-link[data-status="active"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .nav-link[data-status="active"] {
+    color: var(--primary);
+  }
+  .mobile-nav-link {
+    position: relative;
+    transition: background-color .2s ease, color .2s ease, padding-left .2s ease;
+    border-left: 3px solid transparent;
+  }
+  .mobile-nav-link[data-status="active"] {
+    border-left-color: var(--gold);
+    background: var(--secondary);
+    color: var(--primary);
+  }
+}
+
+
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; }
 }
