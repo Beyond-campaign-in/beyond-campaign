@@ -45,7 +45,7 @@ function Page() {
       <section className="px-5 py-20">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {imgs.map((img, i) => (
-            <figure key={i} className={i === 0 ? "sm:col-span-2" : ""}>
+            <figure key={i}>
               <button
                 type="button"
                 onClick={() => open(i)}
@@ -55,8 +55,8 @@ function Page() {
                 <img
                   src={img.src}
                   loading="lazy"
-                  width={i === 0 ? 1600 : 1008}
-                  height={i === 0 ? 1008 : 768}
+                  width={1008}
+                  height={768}
                   alt={img.label}
                   className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
