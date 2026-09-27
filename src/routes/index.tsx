@@ -19,7 +19,16 @@ export const Route = createFileRoute("/")({
   ]}), component: HomePage,
 });
 
-function HomePage() { return <>
+const moments: { src: string; label: string }[] = [
+  { src: hero, label: "Hands-on discovery" },
+  { src: puzzle, label: "Learning through play" },
+  { src: workshop, label: "Questions and conversations" },
+  { src: reading, label: "Independent exploration" },
+];
+
+function HomePage() {
+  const { active, open, close, step } = useLightbox(moments);
+  return <>
   <section className="relative min-h-[calc(100vh-6rem)] overflow-hidden bg-primary text-primary-foreground">
     <img src={hero} width={1600} height={1008} alt="Children discovering through a hands-on learning activity" className="absolute inset-0 h-full w-full object-cover object-center" />
     <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--primary)_0%,color-mix(in_oklab,var(--primary)_92%,transparent)_37%,color-mix(in_oklab,var(--primary)_25%,transparent)_72%,color-mix(in_oklab,var(--primary)_12%,transparent)_100%)]" />
