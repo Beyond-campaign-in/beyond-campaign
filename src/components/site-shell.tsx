@@ -138,7 +138,9 @@ export function SiteFooter() {
     <div className="h-px gold-rule" />
     <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
       <div>
-        <img src={logo} alt="Beyond Campaign" className="h-28 w-auto object-contain object-left" />
+        <div className="inline-flex rounded-md bg-background px-4 py-3 shadow-sm">
+          <img src={logo} alt="Beyond Campaign" className="h-24 w-auto object-contain object-left" />
+        </div>
         <p className="mt-4 max-w-sm text-sm leading-7 text-primary-foreground/75">Inspiring children to ask, understand, think, and discover the lifelong value of learning.</p>
       </div>
       <div>
