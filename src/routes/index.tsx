@@ -66,7 +66,7 @@ function HomePage() {
     <div className="flex flex-wrap items-end justify-between gap-6"><SectionHeading eyebrow="Learning moments" title="Joy, curiosity, and discovery in action." /><Button asChild variant="outline" className="border-gold/50 text-primary hover:bg-gold/10"><Link to="/gallery">View Full Gallery <ArrowRight /></Link></Button></div>
     <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
       {moments.map((m, i) => (
-        <figure key={m.label} className={"flex flex-col" + (i % 2 === 1 ? " lg:mt-8" : "")}>
+        <figure key={m.label} className="flex flex-col">
           <button
             type="button"
             onClick={() => open(i)}
