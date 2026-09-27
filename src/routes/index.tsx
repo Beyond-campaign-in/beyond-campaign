@@ -40,11 +40,11 @@ function HomePage() {
     </div></div>
     <div className="absolute bottom-0 left-0 right-0 border-t border-primary-foreground/20 bg-primary/85 px-5 py-4 backdrop-blur"><p className="mx-auto max-w-7xl text-center font-display text-lg text-gold md:text-2xl">Seed the child — Grow the Youth — Serve Humanity</p></div>
   </section>
-  <section className="px-5 pb-4 pt-10 md:py-28"><div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-12">
+  <section className="px-5 pb-4 pt-10 md:pb-5 md:pt-16"><div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-12">
     <div><SectionHeading eyebrow="Our purpose" title="Learning is more than just studying." text="We believe every child has the ability to learn, think, question, understand, and discover. At Beyond Campaign, we create awareness among children about why they learn, what they gain from learning, and how learning can help them in life." /><p className="mt-6 leading-8 text-muted-foreground">We want children to move beyond simply studying for marks and begin to understand the value of learning.</p><blockquote className="mt-8 border-l-2 border-gold pl-6 font-display text-2xl font-semibold text-primary">Education planted in children today becomes a contribution to humanity tomorrow.</blockquote></div>
     <img src={reading} loading="lazy" width={1008} height={768} alt="A child exploring a book in a library" className="aspect-[4/3] w-full object-cover shadow-xl" />
   </div></section>
-  <section className="px-5 pb-10 pt-4 md:py-28"><div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-12">
+  <section className="px-5 pb-10 pt-4 md:pb-16 md:pt-5"><div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-12">
     <div className="grid grid-cols-2 gap-4">
       <img src={puzzle} loading="lazy" width={1008} height={768} alt="Children learning through a hands-on puzzle activity" className="aspect-[4/3] w-full object-cover shadow-lg" />
       <img src={workshop} loading="lazy" width={1008} height={768} alt="Children asking questions in a group workshop" className="aspect-[4/3] w-full object-cover shadow-lg lg:mt-8" />
