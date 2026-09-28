@@ -133,10 +133,10 @@ export function SiteFooter() {
         </div>
         <p className="mt-4 max-w-sm text-sm leading-7 text-primary-foreground/75">Inspiring children to ask, understand, think, and discover the lifelong value of learning.</p>
       </div>
-      <div>
-        <h2 className="text-xl text-gold">Explore</h2>
-        <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-          {links.slice(1).map(([label, to]) => (
+        <div>
+          <h2 className="text-xl text-gold">Explore</h2>
+          <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+            {links.map(([label, to]) => (
             <Link key={to} to={to} className="w-fit text-primary-foreground/75 transition-all duration-200 hover:translate-x-1 hover:text-gold">{label}</Link>
           ))}
         </div>
