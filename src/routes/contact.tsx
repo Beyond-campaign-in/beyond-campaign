@@ -51,12 +51,12 @@ function Page() {
     };
 
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const serviceId = import.meta.env["VITE_EMAILJS_SERVICE_ID"];
       const contactTemplateId =
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        import.meta.env["VITE_EMAILJS_TEMPLATE_ID"];
       const autoReplyTemplateId =
-        import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+        import.meta.env["VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID"];
+      const publicKey = import.meta.env["VITE_EMAILJS_PUBLIC_KEY"];
 
       if (
         !serviceId ||

@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Compass, Heart, Lightbulb, Users } from "lucide-react";
+import {
+  BookOpen, Brain, Compass, Eye, GraduationCap, HandHeart, Heart, HeartHandshake,
+  Lightbulb, MessageCircleQuestion, Target, Users,
+} from "lucide-react";
 import workshop from "@/assets/learning-workshop.jpg";
 import { CtaBand, InfoCard, PageHero, SectionHeading } from "@/components/page-sections";
 
@@ -68,6 +71,47 @@ function About() {
           <InfoCard icon={<Heart />} title="Our Belief">
             When children understand why they learn, they can begin to take greater ownership of their learning.
           </InfoCard>
+        </div>
+      </section>
+
+      <section className="bg-primary px-5 py-12 text-primary-foreground md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-5 md:grid-cols-2">
+            {([
+              [Eye, "Our Vision", "To create a generation of children who understand the value of learning, think independently, ask questions, and use knowledge to build a better future."],
+              [Target, "Our Mission", "To spark an educational revolution by helping children understand why they learn and inspiring them to become curious, thoughtful, and lifelong learners."],
+            ] as const).map(([Icon, t, d]) => (
+              <div key={t} className="border border-gold/30 p-8 md:p-10">
+                <div className="flex size-12 items-center justify-center bg-gold text-primary"><Icon /></div>
+                <h3 className="mt-6 text-2xl font-bold text-gold">{t}</h3>
+                <p className="mt-4 leading-8 text-primary-foreground/85">{d}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-center leading-8 text-primary-foreground/75">
+            We aim to do this through awareness campaigns, interactive activities, conversations, and learning experiences.
+          </p>
+        </div>
+      </section>
+
+      <section className="px-5 py-12 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Our values"
+            title="The principles behind everything we do."
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {([
+              [MessageCircleQuestion, "Curiosity", "We encourage children to ask questions and explore the world around them."],
+              [BookOpen, "Understanding", "We believe understanding is more meaningful than simply memorizing information."],
+              [Brain, "Thinking", "We encourage children to think, reason, and form their own understanding."],
+              [GraduationCap, "Learning", "Learning is a continuous journey, not something that ends with school."],
+              [HandHeart, "Responsibility", "We encourage children to take responsibility for their learning and growth."],
+              [HeartHandshake, "Humanity", "We believe knowledge can be used to help ourselves, others, and society."],
+            ] as const).map(([Icon, t, d]) => (
+              <InfoCard key={t} icon={<Icon />} title={t}>{d}</InfoCard>
+            ))}
+          </div>
         </div>
       </section>
 
