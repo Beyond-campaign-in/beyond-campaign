@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Compass, Heart, Lightbulb, Users } from "lucide-react";
+import {
+  BookOpen, Brain, Compass, Eye, GraduationCap, HandHeart, HeartHandshake,
+  Lightbulb, MessageCircleQuestion, Target, Users,
+} from "lucide-react";
 import workshop from "@/assets/learning-workshop.jpg";
 import { CtaBand, InfoCard, PageHero, SectionHeading } from "@/components/page-sections";
 
