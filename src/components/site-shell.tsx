@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Globe, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "@/assets/beyond-campaign-logo-transparent.png";
 import { Button } from "@/components/ui/button";
@@ -144,9 +144,18 @@ export function SiteFooter() {
       <div>
         <h2 className="text-xl text-gold">Connect</h2>
         <div className="mt-4 space-y-3 text-sm text-primary-foreground/75">
-          <a className="block transition-colors hover:text-gold" href="tel:+917708045679">+91 77080 45679</a>
-          <a className="block break-all transition-colors hover:text-gold" href="mailto:beyondcampaign.in@gmail.com">beyondcampaign.in@gmail.com</a>
-          <a className="block transition-colors hover:text-gold" href="https://www.beyondcampaign.co.in">www.beyondcampaign.co.in</a>
+          <a className="flex items-center gap-3 transition-colors hover:text-gold" href="tel:+917708045679">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-foreground/10 text-gold"><Phone className="size-4" /></span>
+            +91 77080 45679
+          </a>
+          <a className="flex items-center gap-3 transition-colors hover:text-gold" href="mailto:beyondcampaign.in@gmail.com">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-foreground/10 text-gold"><Mail className="size-4" /></span>
+            <span className="break-all">beyondcampaign.in@gmail.com</span>
+          </a>
+          <a className="flex items-center gap-3 transition-colors hover:text-gold" href="https://www.beyondcampaign.co.in" target="_blank" rel="noreferrer">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-foreground/10 text-gold"><Globe className="size-4" /></span>
+            www.beyondcampaign.co.in
+          </a>
         </div>
       </div>
     </div>
