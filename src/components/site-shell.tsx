@@ -5,7 +5,7 @@ import logo from "@/assets/beyond-campaign-logo-transparent.png";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  ["Home", "/"], ["About", "/about"], ["Why Learning?", "/why-learning"],
+  ["Home", "/"], ["About", "/about"], ["Vision & Mission", "/vision-mission"], ["Why Learning?", "/why-learning"],
   ["Programs", "/programs"], ["Events", "/events"], ["Gallery", "/gallery"],
   ["Get Involved", "/get-involved"], ["FAQ", "/faq"], ["Contact", "/contact"],
 ] as const;
@@ -136,7 +136,7 @@ export function SiteFooter() {
       <div>
         <h2 className="text-xl text-gold">Explore</h2>
         <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-          {links.slice(1, 9).map(([label, to]) => (
+          {links.slice(1).map(([label, to]) => (
             <Link key={to} to={to} className="w-fit text-primary-foreground/75 transition-all duration-200 hover:translate-x-1 hover:text-gold">{label}</Link>
           ))}
         </div>
