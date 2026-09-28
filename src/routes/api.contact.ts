@@ -11,7 +11,9 @@ export const Route = createFileRoute("/api/contact")({
           const name = String(body.name ?? "").trim();
           const email = String(body.email ?? "").trim();
           const phone = String(body.phone ?? "").trim();
-          const organization = String(body.organization ?? "").trim();
+          const organization = String(
+            body.organization ?? ""
+          ).trim();
           const message = String(body.message ?? "").trim();
 
           // Validate required fields
@@ -21,7 +23,7 @@ export const Route = createFileRoute("/api/contact")({
                 success: false,
                 message: "Please fill in all required fields.",
               },
-              { status: 400 },
+              { status: 400 }
             );
           }
 
@@ -32,7 +34,7 @@ export const Route = createFileRoute("/api/contact")({
                 success: false,
                 message: "Please enter a valid email address.",
               },
-              { status: 400 },
+              { status: 400 }
             );
           }
 
@@ -45,11 +47,12 @@ export const Route = createFileRoute("/api/contact")({
                 success: false,
                 message: "Email service is not configured.",
               },
-              { status: 500 },
+              { status: 500 }
             );
           }
 
-          const from = "Beyond Campaign <onboarding@resend.dev>";
+          const from =
+            "Beyond Campaign <onboarding@resend.dev>";
 
           // Email 1: Send enquiry details to the client
           const clientResponse = await fetch(
@@ -71,27 +74,30 @@ export const Route = createFileRoute("/api/contact")({
                   `Name: ${name}`,
                   `Email: ${email}`,
                   `Phone: ${phone || "Not provided"}`,
-                  `School / Organization: ${organization || "Not provided"}`,
+                  `School / Organization: ${
+                    organization || "Not provided"
+                  }`,
                   "",
                   "Message:",
                   message,
                 ].join("\n"),
               }),
-            },
+            }
           );
 
           if (!clientResponse.ok) {
             console.error(
               "Client notification error:",
-              await clientResponse.text(),
+              await clientResponse.text()
             );
 
             return Response.json(
               {
                 success: false,
-                message: "Unable to send your enquiry. Please try again later.",
+                message:
+                  "Unable to send your enquiry. Please try again later.",
               },
-              { status: 502 },
+              { status: 502 }
             );
           }
 
@@ -107,7 +113,8 @@ export const Route = createFileRoute("/api/contact")({
               body: JSON.stringify({
                 from,
                 to: [email],
-                subject: "Thank you for contacting Beyond Campaign",
+                subject:
+                  "Thank you for contacting Beyond Campaign",
                 text: [
                   `Dear ${name},`,
                   "",
@@ -119,13 +126,13 @@ export const Route = createFileRoute("/api/contact")({
                   "Beyond Campaign Team",
                 ].join("\n"),
               }),
-            },
+            }
           );
 
           if (!visitorResponse.ok) {
             console.error(
               "Visitor confirmation error:",
-              await visitorResponse.text(),
+              await visitorResponse.text()
             );
 
             return Response.json(
@@ -134,7 +141,7 @@ export const Route = createFileRoute("/api/contact")({
                 message:
                   "Your enquiry was received, but the confirmation email could not be sent.",
               },
-              { status: 502 },
+              { status: 502 }
             );
           }
 
@@ -151,7 +158,7 @@ export const Route = createFileRoute("/api/contact")({
               success: false,
               message: "Something went wrong. Please try again.",
             },
-            { status: 500 },
+            { status: 500 }
           );
         }
       },

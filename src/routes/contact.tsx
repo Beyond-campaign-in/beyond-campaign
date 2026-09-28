@@ -2,19 +2,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Globe2, Mail, Phone } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/page-sections";
 
-const d =
+const description =
   "Contact Beyond Campaign about school awareness programs, volunteering, partnerships, or educational collaboration.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact Us — Beyond Campaign" },
-      { name: "description", content: d },
+      { name: "description", content: description },
       { property: "og:title", content: "Contact Us — Beyond Campaign" },
-      { property: "og:description", content: d },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,12 +27,14 @@ function Page() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [autoReplyError, setAutoReplyError] = useState("");
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     setDone(false);
     setError("");
+    setAutoReplyError("");
     setLoading(true);
 
     const form = e.currentTarget;
@@ -41,34 +44,110 @@ function Page() {
       name: String(formData.get("name") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       phone: String(formData.get("phone") ?? "").trim(),
-      organization: String(formData.get("organization") ?? "").trim(),
+      organization: String(
+        formData.get("organization") ?? ""
+      ).trim(),
       message: String(formData.get("message") ?? "").trim(),
     };
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const contactTemplateId =
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const autoReplyTemplateId =
+        import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
+      if (
+        !serviceId ||
+        !contactTemplateId ||
+        !autoReplyTemplateId ||
+        !publicKey
+      ) {
         throw new Error(
-          result.message || "Unable to send your message. Please try again.",
+          "EmailJS configuration missing. Check your .env file."
         );
       }
 
+      // 1. Send contact enquiry to Beyond Campaign.
+      await emailjs.send(
+        serviceId,
+        contactTemplateId,
+        {
+          name: payload.name,
+          from_name: payload.name,
+          from_email: payload.email,
+          email: payload.email,
+          reply_to: payload.email,
+          title: "Contact Us",
+          phone: payload.phone || "Not provided",
+          organization: payload.organization || "Not provided",
+          message: payload.message,
+          to_email: "beyondcampaign.in@gmail.com",
+        },
+        { publicKey }
+      );
+
+      console.log("Contact email sent successfully.");
+
+      // The enquiry has been received.
       setDone(true);
       form.reset();
-    } catch (err) {
+
+      // 2. Send confirmation email to the visitor.
+      try {
+        const autoReplyResponse = await emailjs.send(
+          serviceId,
+          autoReplyTemplateId,
+          {
+            name: payload.name,
+            to_name: payload.name,
+            email: payload.email,
+            to_email: payload.email,
+            from_name: "Beyond Campaign",
+            reply_to: "beyondcampaign.in@gmail.com",
+            title: "Contact Us",
+            phone: payload.phone || "Not provided",
+            organization: payload.organization || "Not provided",
+            message: payload.message,
+          },
+          { publicKey }
+        );
+
+        console.log(
+          "Auto-reply sent successfully:",
+          autoReplyResponse.status,
+          autoReplyResponse.text
+        );
+      } catch (autoReplyError: unknown) {
+        console.error("Auto-reply failed:", autoReplyError);
+
+        if (
+          autoReplyError &&
+          typeof autoReplyError === "object"
+        ) {
+          const emailError = autoReplyError as {
+            status?: number;
+            text?: string;
+            message?: string;
+          };
+
+          console.error("EmailJS status:", emailError.status);
+          console.error("EmailJS response:", emailError.text);
+          console.error("Error message:", emailError.message);
+        }
+
+        setAutoReplyError(
+          "Your enquiry was received, but the confirmation email could not be sent. Please check the Auto-Reply template settings."
+        );
+      }
+    } catch (err: unknown) {
+      console.error("Contact email failed:", err);
+
       setError(
         err instanceof Error
           ? err.message
-          : "Something went wrong. Please try again.",
+          : "Unable to send your enquiry. Please try again."
       );
     } finally {
       setLoading(false);
@@ -104,7 +183,9 @@ function Page() {
               >
                 <Phone className="text-gold-rich" />
                 <span>
-                  <small className="block text-muted-foreground">Phone</small>
+                  <small className="block text-muted-foreground">
+                    Phone
+                  </small>
                   +91 77080 45679
                 </span>
               </a>
@@ -115,18 +196,24 @@ function Page() {
               >
                 <Mail className="text-gold-rich" />
                 <span className="min-w-0 break-all">
-                  <small className="block text-muted-foreground">Email</small>
+                  <small className="block text-muted-foreground">
+                    Email
+                  </small>
                   beyondcampaign.in@gmail.com
                 </span>
               </a>
 
               <a
                 href="https://www.beyondcampaign.co.in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-4"
               >
                 <Globe2 className="text-gold-rich" />
                 <span>
-                  <small className="block text-muted-foreground">Website</small>
+                  <small className="block text-muted-foreground">
+                    Website
+                  </small>
                   www.beyondcampaign.co.in
                 </span>
               </a>
@@ -170,7 +257,8 @@ function Page() {
                   name="phone"
                   type="tel"
                   autoComplete="tel"
-                  pattern="[0-9+() -]{7,}"
+                  inputMode="tel"
+                  maxLength={20}
                 />
               </label>
 
@@ -208,7 +296,7 @@ function Page() {
                 role="status"
                 className="mt-4 rounded-md border border-gold bg-background p-4 text-sm text-primary"
               >
-                Thank you! Your message has been sent successfully.
+                Thank you! Your enquiry has been sent successfully.
               </p>
             )}
 
@@ -218,6 +306,15 @@ function Page() {
                 className="mt-4 rounded-md border border-red-500 bg-background p-4 text-sm text-red-600"
               >
                 {error}
+              </p>
+            )}
+
+            {autoReplyError && (
+              <p
+                role="alert"
+                className="mt-4 rounded-md border border-red-500 bg-background p-4 text-sm text-red-600"
+              >
+                {autoReplyError}
               </p>
             )}
 
