@@ -99,7 +99,6 @@ function About() {
           <SectionHeading
             eyebrow="Our values"
             title="The principles behind everything we do."
-            text="We aim to do this through awareness campaigns, interactive activities, conversations, and learning experiences."
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {([
