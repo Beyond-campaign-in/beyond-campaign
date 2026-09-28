@@ -17,6 +17,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as VisionMissionRouteImport } from './routes/vision-mission'
 import { Route as WhyLearningRouteImport } from './routes/why-learning'
 import { Route as ApiContactRouteImport } from './routes/api.contact'
 
@@ -60,6 +61,11 @@ const ProgramsRoute = ProgramsRouteImport.update({
   path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisionMissionRoute = VisionMissionRouteImport.update({
+  id: '/vision-mission',
+  path: '/vision-mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WhyLearningRoute = WhyLearningRouteImport.update({
   id: '/why-learning',
   path: '/why-learning',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
+  '/vision-mission': typeof VisionMissionRoute
   '/why-learning': typeof WhyLearningRoute
   '/api/contact': typeof ApiContactRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
+  '/vision-mission': typeof VisionMissionRoute
   '/why-learning': typeof WhyLearningRoute
   '/api/contact': typeof ApiContactRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
+  '/vision-mission': typeof VisionMissionRoute
   '/why-learning': typeof WhyLearningRoute
   '/api/contact': typeof ApiContactRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/get-involved'
     | '/programs'
+    | '/vision-mission'
     | '/why-learning'
     | '/api/contact'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/get-involved'
     | '/programs'
+    | '/vision-mission'
     | '/why-learning'
     | '/api/contact'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/get-involved'
     | '/programs'
+    | '/vision-mission'
     | '/why-learning'
     | '/api/contact'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   GetInvolvedRoute: typeof GetInvolvedRoute
   ProgramsRoute: typeof ProgramsRoute
+  VisionMissionRoute: typeof VisionMissionRoute
   WhyLearningRoute: typeof WhyLearningRoute
   ApiContactRoute: typeof ApiContactRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vision-mission': {
+      id: '/vision-mission'
+      path: '/vision-mission'
+      fullPath: '/vision-mission'
+      preLoaderRoute: typeof VisionMissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/why-learning': {
       id: '/why-learning'
       path: '/why-learning'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   GetInvolvedRoute: GetInvolvedRoute,
   ProgramsRoute: ProgramsRoute,
+  VisionMissionRoute: VisionMissionRoute,
   WhyLearningRoute: WhyLearningRoute,
   ApiContactRoute: ApiContactRoute,
 }
