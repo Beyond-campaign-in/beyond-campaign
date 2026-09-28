@@ -39,7 +39,7 @@ export const Route = createFileRoute("/api/contact")({
           }
 
           // Get Resend API key from .env
-          const apiKey = process.env.RESEND_API_KEY;
+          const apiKey = process.env["RESEND_API_KEY"];
 
           if (!apiKey) {
             return Response.json(
