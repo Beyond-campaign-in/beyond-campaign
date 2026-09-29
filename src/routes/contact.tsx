@@ -1,6 +1,5 @@
-
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+ import { createFileRoute } from "@tanstack/react-router";
+import { useState, useRef, type FormEvent } from "react";
 import { Globe2, Mail, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
@@ -28,9 +27,15 @@ function Page() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [autoReplyError, setAutoReplyError] = useState("");
+  
+  // Guard reference to prevent double submission
+  const isSubmittingRef = useRef(false);
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (isSubmittingRef.current || loading) return;
+    isSubmittingRef.current = true;
 
     setDone(false);
     setError("");
@@ -151,6 +156,7 @@ function Page() {
       );
     } finally {
       setLoading(false);
+      isSubmittingRef.current = false;
     }
   }
 
