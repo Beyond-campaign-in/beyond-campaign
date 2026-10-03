@@ -67,7 +67,7 @@ function About() {
             We use simple conversations, activities, games, questions, stories, and real-life examples to make children think about learning.
           </InfoCard>
           <InfoCard icon={<Heart />} title="Our Belief">
-            When children understand why they learn, they can begin to take greater ownership of their learning.
+           We strongly believe that learning empowers children most when they understand why they learn, how understanding and thinking shape who they are, and what they gain from learning.
           </InfoCard>
         </div>
       </section>
